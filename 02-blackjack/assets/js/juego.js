@@ -57,8 +57,23 @@ console.log( carta );//Carta debe de ser de la baraja
 
     return carta;
 }
+// pedirCarta();
+const valorCarta = ( carta ) => {
 
-for ( let i = 0; i <= 100; i++ ){
-    pedirCarta();
-    
+    const valor = carta.substring(0, carta.length - 1);
+
+    return ( isNaN( valor)) ?
+            ( valor === 'A') ? 11 : 10
+            : valor * 1;
+            //Si ni es una letra quiere decir que es un número * 1
+
+    //Si es un numero entonces pregunta por el VALOR y sino lo es
+
+    //     //isNaN = is not a number y evalúa lo que hay en el paréntesis y dice si es un numero
+     //     //OPERADOR TERNARIO
+    //     puntos = ( valor === 'A' ) ? 11 : 10;
+    //     //Si el valor es igual a A entonces vale 11 sino vale 10
 }
+ const valor = valorCarta( pedirCarta() );
+ console.log({ valor});
+
