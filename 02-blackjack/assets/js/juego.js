@@ -21,24 +21,22 @@
      */
     for ( let i = 2; i <= 10; i++){
 
-        for( let tipo of tipos) {
-            deck.push(i + tipo);
-            //i vale de 2 hasta 10
-        }
-        
-        
-        for (let tipo of tipos){
-            for( let esp of especiales){
-                deck.push(esp + tipo);
-                
+        for( let i = 2; i <= 10; i++ ) {
+            for( let tipo of tipos ) {
+                deck.push( i + tipo);
             }
         }
-
+    
+        for( let tipo of tipos ) {
+            for( let esp of especiales ) {
+                deck.push( esp + tipo);
+            }
+        }
+        // console.log( deck );
+        deck = _.shuffle( deck );
+        console.log( deck );
+        return deck;
     }
-    // console.log( deck );
-    deck = _.shuffle( deck );//Propiedad de la libreria underscore 
-    console.log( deck );
-    return deck;
 }
   
  crearDeck();
@@ -60,7 +58,7 @@ console.log( carta );//Carta debe de ser de la baraja
     return carta;
 }
 
-pedirCarta();
-// for ( let i = 0; i <= 100; i++ ){
+for ( let i = 0; i <= 100; i++ ){
+    pedirCarta();
     
-// }
+}
