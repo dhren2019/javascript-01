@@ -17,7 +17,12 @@
 
  //Referencias html
  const btnPedir = document.querySelector('#btnPedir');
+ const btnDetener = document.querySelector('#btnDetener');
+
+
 const puntosHTML =  document.querySelectorAll('small');
+const divCartasPlayer = document.querySelector('#jugador-cartas')
+const divCartasBanca = document.querySelector('#banca-cartas')
  
  //Esta función crea una nueva baraja
  const crearDeck = () => {
@@ -81,6 +86,32 @@ const valorCarta = ( carta ) => {
     //     //Si el valor es igual a A entonces vale 11 sino vale 10
 }
  
+//Turno de la banca
+const turnoBanca = ( puntosMinimos) => {
+
+
+  do {
+      
+      const carta = pedirCarta();
+      
+      puntosBanca = puntosBanca + valorCarta( carta);
+      
+      
+      puntosHTML[1].innerHTML = puntosBanca;
+      console.error('Ha perdido la banca');
+      
+      const imgCarta = document.createElement('img');
+      imgCarta.src = `assets/cartas/${ carta }.png`;
+      imgCarta.classList.add( 'carta');
+      
+      divCartasBanca.append( imgCarta);
+
+      if( puntosMinimos > 21){
+          break;
+      }
+      
+    } while ( (puntosBanca < puntosMinimos) && (puntosMinimos <= 21) );  
+}
 
 //Eventos
 
@@ -94,6 +125,42 @@ btnPedir.addEventListener('click', () => {
 
     puntosHTML[0].innerHTML = puntosPlayer;
     //Muestra los puntos del jugador en el small y el [0] es porque se imprime en el primer small
+
+    //Hacer que aparezca la imagen de la carta <img class="carta" src="assets/cartas/2C.png" alt=""> 
+    const imgCarta = document.createElement('img');
+    imgCarta.src = `assets/cartas/${ carta }.png`;
+    imgCarta.classList.add( 'carta');
+
+    divCartasPlayer.append( imgCarta);//append añade la imagen de la carta
+
+
+    //Controlar los puntos si se pasa o si gana
+
+    if ( puntosPlayer > 21 ){
+        console.warn('You lost');
+        btnPedir.disabled = true;//Se deshabilita el boton de pedir al pasar de 21
+        turnoBanca( puntosPlayer);
+        btnDetener.disabled = true;
+        
+    } else if  ( puntosPlayer === 21) {
+        
+        console.warn('21, ganial!');
+        btnPedir.disabled = true;//Se deshabilita el boton de pedir al tener 21
+        btnDetener.disabled = true;
+        
+    }
+    
 });
+
+btnDetener.addEventListener('click', () => {
+    
+    btnPedir.disabled = true;//Se deshabilita el boton de pedir al pasar de 21
+    btnDetener.disabled = true;
+
+    turnoBanca( puntosPlayer);
+    
+});
+
+
 
 
