@@ -10,7 +10,14 @@
 
  const tipos = ['C', 'D', 'H', 'S'];
  const especiales = ['A', 'J', 'Q', 'K'];
- 
+
+ //Cuantos puntos va sumando jugador y banca
+ let puntosPlayer = 0,  //Se inician en 0
+    puntosBanca = 0
+
+ //Referencias html
+ const btnPedir = document.querySelector('#btnPedir');
+const puntosHTML =  document.querySelectorAll('small');
  
  //Esta función crea una nueva baraja
  const crearDeck = () => {
@@ -32,9 +39,8 @@
                 deck.push( esp + tipo);
             }
         }
-        // console.log( deck );
         deck = _.shuffle( deck );
-        console.log( deck );
+        // console.log( deck );
         return deck;
     }
 }
@@ -52,8 +58,8 @@ const pedirCarta = () => {
     const carta = deck.pop();
     //Elimina la última carta de la baraja
 
-    console.log(deck);
-console.log( carta );//Carta debe de ser de la baraja
+    // console.log(deck);
+// console.log( carta );//Carta debe de ser de la baraja
 
     return carta;
 }
@@ -74,6 +80,20 @@ const valorCarta = ( carta ) => {
     //     puntos = ( valor === 'A' ) ? 11 : 10;
     //     //Si el valor es igual a A entonces vale 11 sino vale 10
 }
- const valor = valorCarta( pedirCarta() );
- console.log({ valor});
+ 
+
+//Eventos
+
+btnPedir.addEventListener('click', () => {
+
+    const carta = pedirCarta();//Carta = pedircarta que saca una carta de la baraja
+    //Cuantos puntos va sumando el player
+
+    puntosPlayer = puntosPlayer + valorCarta( carta);
+
+
+    puntosHTML[0].innerHTML = puntosPlayer;
+    //Muestra los puntos del jugador en el small y el [0] es porque se imprime en el primer small
+});
+
 
