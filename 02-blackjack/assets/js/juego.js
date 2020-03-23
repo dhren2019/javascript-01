@@ -18,6 +18,7 @@
  //Referencias html
  const btnPedir = document.querySelector('#btnPedir');
  const btnDetener = document.querySelector('#btnDetener');
+ const btnNuevo = document.querySelector('#btnNuevo');
 
 
 const puntosHTML =  document.querySelectorAll('small');
@@ -98,7 +99,7 @@ const turnoBanca = ( puntosMinimos) => {
       
       
       puntosHTML[1].innerHTML = puntosBanca;
-      console.error('Ha perdido la banca');
+      
       
       const imgCarta = document.createElement('img');
       imgCarta.src = `assets/cartas/${ carta }.png`;
@@ -111,6 +112,23 @@ const turnoBanca = ( puntosMinimos) => {
       }
       
     } while ( (puntosBanca < puntosMinimos) && (puntosMinimos <= 21) );  
+
+    setTimeout(() => { //Callback
+        //Ejecutará los alert 10" después de que aparezcan las cartas
+        
+        if ( puntosBanca === puntosMinimos){
+            alert('Empate');
+        }else if ( puntosMinimos > 21) {
+            alert('Banca gana');
+            
+        }else if ( puntosBanca > 21){
+            alert('Jugador gana');
+            
+        }else {
+            alert('Banca gana');
+
+        }
+    }, 100);
 }
 
 //Eventos
@@ -163,4 +181,24 @@ btnDetener.addEventListener('click', () => {
 
 
 
+btnNuevo.addEventListener('click', () => {
+
+    console.clear();
+
+    deck = [];
+    deck = crearDeck();
+
+    puntosBanca  = 0;
+    puntosPlayer = 0;
+
+    puntosHTML[0].innerText = 0;
+    puntosHTML[1].innerText = 0;
+
+    divCartasBanca.innerHTML = '';
+    divCartasPlayer.innerHTML = '';
+
+    btnPedir.disabled   = false;
+    btnDetener.disabled = false;
+
+});
 
