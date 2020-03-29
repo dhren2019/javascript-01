@@ -69,3 +69,5 @@ movieSelect.addEventListener('change', e => {
 
   updateSelectedSeatsCount();
 });
+
+
