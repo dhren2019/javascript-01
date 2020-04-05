@@ -22,4 +22,4 @@ class Empresa extends Cliente {
     }
 }
 const empresa = new Empresa ('Empresa1', 10000, 6484940,'Construccion');
-console.log(empresa.bienvenida());
+console.log(empresa.imprimirSaldo());
