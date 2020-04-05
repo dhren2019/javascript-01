@@ -1,11 +1,12 @@
 // Cotizador Construcor
 // Constructor para Seguro
-function Seguro(marca, anio, tipo) {
+class Seguro{
+    constructor(marca, anio, tipo) {
     this.marca = marca;
     this.anio = anio;
     this.tipo = tipo;
 }
-Seguro.prototype.cotizarSeguro = function() {
+    cotizarSeguro() {
     /*
          1 = americano 1.15
          2 = asiatico 1.05
@@ -44,61 +45,65 @@ Seguro.prototype.cotizarSeguro = function() {
 
 }
 
+
 // Todo lo que se muestra
-function Interfaz() {}
-
-// Mensaje que se imprime en el HTML
-Interfaz.prototype.mostrarMensaje = function(mensaje, tipo) {
-    const div = document.createElement('div');
-
-    if(tipo === 'error') {
-         div.classList.add('mensaje','error');
-    } else {
-         div.classList.add('mensaje','correcto');
-    }
-    div.innerHTML = `${mensaje}`;
-    formulario.insertBefore(div, document.querySelector('.form-group'));
-
-    setTimeout(function() {
-         document.querySelector('.mensaje').remove();
-    }, 3000);
-} 
-
-// Imprime el resultado de la cotización
-Interfaz.prototype.mostrarResultado = function(seguro, total) {
-    const resultado = document.getElementById('resultado');
-    let marca;
-    switch(seguro.marca) {
-         case '1':
-              marca = 'Americano';
-              break;
-         case '2':
-              marca = 'Asiatico';
-              break;
-         case '3':
-              marca = 'Europeo';
-              break;
-    }
-    // Crear un div
-    const div = document.createElement('div');
-    // Insertar la informacion
-    div.innerHTML = `
-         <p class='header'>Tu Resumen: </p>
-         <p>Marca: ${marca} </p>
-         <p>Año: ${seguro.anio} </p>
-         <p>Tipo: ${seguro.tipo} </p>
-         <p> Total: $ ${total} </p>
-    `;
-
-    const spinner = document.querySelector('#cargando img');
-    spinner.style.display = 'block';
-    setTimeout(function() {
-         spinner.style.display = 'none';
-         resultado.appendChild(div);
-    }, 3000);
+class Interfaz {
+    // Mensaje que se imprime en el HTML
+    mostrarMensaje (mensaje, tipo) {
+        const div = document.createElement('div');
     
-
+        if(tipo === 'error') {
+             div.classList.add('mensaje','error');
+        } else {
+             div.classList.add('mensaje','correcto');
+        }
+        div.innerHTML = `${mensaje}`;
+        formulario.insertBefore(div, document.querySelector('.form-group'));
+    
+        setTimeout(function() {
+             document.querySelector('.mensaje').remove();
+        }, 3000);
+    } 
+    mostrarResultado (seguro, total) {
+        const resultado = document.getElementById('resultado');
+        let marca;
+        switch(seguro.marca) {
+             case '1':
+                  marca = 'Americano';
+                  break;
+             case '2':
+                  marca = 'Asiatico';
+                  break;
+             case '3':
+                  marca = 'Europeo';
+                  break;
+        }
+        // Crear un div
+        const div = document.createElement('div');
+        // Insertar la informacion
+        div.innerHTML = `
+             <p class='header'>Tu Resumen: </p>
+             <p>Marca: ${marca} </p>
+             <p>Año: ${seguro.anio} </p>
+             <p>Tipo: ${seguro.tipo} </p>
+             <p> Total: $ ${total} </p>
+        `;
+    
+        const spinner = document.querySelector('#cargando img');
+        spinner.style.display = 'block';
+        setTimeout(function() {
+             spinner.style.display = 'none';
+             resultado.appendChild(div);
+        }, 3000);
+        
+    
+    }
+     
 }
+
+
+
+
 
 
 // EventListener
