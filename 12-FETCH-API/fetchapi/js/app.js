@@ -6,26 +6,18 @@
 
  function cargarTXT() {
      fetch('datos.txt')
-        .then(function (res) {
-            return res.text();
-            
-        })
-        .then(function (empleados) {
-            console.log(empleados);
-            document.getElementById('resultado').innerHTML= empleados;
-            
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
+        .then(res => res.text() ) 
+
+        .then(empleados => document.getElementById('resultado').innerHTML= empleados)
+
+        .catch(error =>  console.log(error) )
  }
 
  function cargarJSON () {
      fetch('empleados.json')
-        .then (function (res) {
-            return res.json();
-        })
-        .then(function (data) {
+        .then ( res => res.json() )
+    
+        .then(data => {
             let html = '';
             data.forEach(function(empleado) {
                 html += `
@@ -34,17 +26,15 @@
             })
             document.getElementById('resultado').innerHTML = html;
         })
+        .catch(error =>  console.log(error) )
     }
     
     function cargarREST() {
         
         fetch('https://picsum.photos/list')
-        .then(function (res) {
-            return res.json();
-         
-           
-        })
-        .then(function (fotos) {
+        .then ( res => res.json() )
+        
+        .then(fotos => {
             console.log(fotos);
             let html = '';
             fotos.forEach(function (imagen) {
@@ -58,7 +48,6 @@
             
             document.getElementById('resultado').innerHTML = html;
         })
-        .catch(function (error) {
-            console.log(error);
-        })
- }
+        .catch(error =>  console.log(error) )
+        
+    }
