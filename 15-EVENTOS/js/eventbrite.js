@@ -3,6 +3,8 @@ class EventBrite {
         this.token_auth = 'MJRLIFZEQKYAIH3RPICU';
         this.ordenar = 'date';
     }
+    //mostrar resultados de la busqueda
+    async obtenerEventos(evento)
     //obtiene las categorias en init
     async obtenerCategorias(){
         //consulta las categorias a la rest api de event brite
